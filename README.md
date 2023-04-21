@@ -1,36 +1,76 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+# similarity-api
 
-First, run the development server:
+### About:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+This is an educational project. This is an API service that helps to compare two texts by their identity.
+
+**Frontend** is fully responsive for all devices, **TailwindCSS** is also used as a styling approach
+
+## How to use:
+
+### Nodejs - 
+```node
+const axios = require("axios");
+
+const options = {
+    method: 'POST',
+    url: 'https://similarity-api-dgce.vercel.app/api/v1/similarity',
+    params: {
+      text1: 'First text',
+      text2: 'Second text'
+    },
+    headers: {
+      'Authorization': 'YOUR_API_KEY',
+    }
+  };
+  
+axios.request(options).then(function (response) {
+    console.log(response.data);
+}).catch(function (error) {
+    console.error(error);
+});
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+#
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Python -
 
-[http://localhost:3000/api/hello](http://localhost:3000/api/hello) is an endpoint that uses [Route Handlers](https://beta.nextjs.org/docs/routing/route-handlers). This endpoint can be edited in `app/api/hello/route.ts`.
+```python
+import requests
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+url = 'https://similarity-api-dgce.vercel.app/api/v1/similarity'
+api_key = 'YOUR_API_KEY'
+text1 = 'First text'
+text2 = 'Second text'
 
-## Learn More
+headers = {
+    'Authorization': api_key
+}
 
-To learn more about Next.js, take a look at the following resources:
+payload = {
+    'text1': text1,
+    'text2': text2
+}
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+response = requests.post(url, headers=headers, json=payload)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+if response.status_code == 200:
+    data = response.json()
+    print(data)
+else:
+    print(f'Request failed with status code {response.status_code}')
 
-## Deploy on Vercel
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+#
+
+![Preview](https://i.ibb.co/gFXwbgD/2023-04-21-16-42-41.png)
+![Preview](https://i.ibb.co/GsJyHdP/2023-04-21-16-42-53.png)
+
+To Visit App:
+
+Deployed in **Vercel** - `https://similarity-api-dgce.vercel.app/documentation`
+
